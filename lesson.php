@@ -17,10 +17,11 @@ function Load_Lesson() {
 	//$myQuestions = get_questions($myCards);
 	//$lessonHTML = get_lessonHTML($myQuestions);
 	//return $lessonHTML;
+
 	$test = testData();
 	$lessonHTML = "";
 	foreach ($test as $card) {
-		$lessonHTML .= "<div id='lessonFrame'>
+		$lessonHTML .= "<div id='lessonFrame'><h1>".$card["name"]."</h1>
 				<div id='imgFrame'><img src='./img/".$card["image"]."' /></div>
 				<div id='answerFrame'>";
 		foreach ($card["meanings"] as $meaning) {
