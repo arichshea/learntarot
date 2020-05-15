@@ -17,8 +17,7 @@ function Load_Lesson() {
 	//$myQuestions = get_questions($myCards);
 	//$lessonHTML = get_lessonHTML($myQuestions);
 	//return $lessonHTML;
-<<<<<<< Updated upstream
-=======
+
 	$test = testData();
 	$lessonHTML = "";
 	foreach ($test as $card) {
@@ -30,7 +29,6 @@ function Load_Lesson() {
 		}
 		$lessonHTML .= "</div></div>";
 	}
->>>>>>> Stashed changes
 	
 	return "<div id='lessonFrame'>
 				<div id='imgFrame'><img src='./img/ar08.jpg' /></div>
