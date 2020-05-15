@@ -21,7 +21,7 @@ function Load_Lesson() {
 	$test = testData();
 	$lessonHTML = "";
 	foreach ($test as $card) {
-		$lessonHTML .= "<div id='lessonFrame'><h1>".$card["name"]."</h1>
+		$lessonHTML .= "<div id='lessonFrame'><h2>".$card["name"]."</h2>
 				<div id='imgFrame'><img src='./img/".$card["image"]."' /></div>
 				<div id='answerFrame'>";
 		foreach ($card["meanings"] as $meaning) {
