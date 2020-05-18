@@ -14,6 +14,9 @@ Question types:
 
 topics:
 Level 1: Normal
+major arcana
+	intro lesson 
+	practice lesson 
 suits
 	intro lesson
 	practice lesson 
@@ -21,9 +24,7 @@ suits
 numbers
 	intro lesson 
 	practice lesson 
-major arcana
-	intro lesson 
-	practice lesson 
+
 cups court
 pentacles court 
 swords court 
@@ -68,7 +69,7 @@ Display_Page($myPage);
 /*
 database design;
 table: cards
-each row: img location, associated words, suit, number, name, type, reversed words
+each row: img location, associated words, suit, number, name, reversed words
 table Meanings:
 each row:
 	Meaning, cardName, orientation, suit, number, name, type

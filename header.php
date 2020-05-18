@@ -16,6 +16,13 @@ function Load_Header() {
 			  padding:10px;
 			}
 			
+			.answer.good {
+				background-color:rgb(200, 255, 200);
+			}
+			.answer.bad{
+				background-color:rgb(255, 200, 200);
+			}
+			
 			div {
 				position: relative;
 				display: block;
