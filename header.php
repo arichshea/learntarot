@@ -4,6 +4,7 @@ function Load_Header() {
 	return "<html>
 		<head>
 		<title>Tarot Card Learner</title>
+		<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 		<style>
 			
 			#lessonFrame img {
@@ -24,6 +25,7 @@ function Load_Header() {
 			}
 			
 			div {
+				float:left;
 				position: relative;
 				display: block;
 				margin: 20px;
