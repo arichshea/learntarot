@@ -1,84 +1,24 @@
 <?php
 
 function Load_Lesson() {
-	$myLesson = "";
-	//get lesson
+	$myLesson = "intro";
 	if (isset($_GET["lesson"])) {
 		$myLesson = $_GET["lesson"];
 	} 
 	
-	if ($myLesson == "") {
-		$myLesson = "intro";
-	}
+	$myCards = getCards();
 	
-	//load specific lesson 
-	//$myCards = get_cards($myLesson);
-	//$myQuestions = get_questions($myCards);
-	//$lessonHTML = get_lessonHTML($myQuestions);
-	//return $lessonHTML;
 
-	$myCards = testData();
+	
+	$myQuestions = getQuestions( $myCards );
+	
 	$lessonHTML = "";
-	$myQuestions = array();
 	if ($myLesson == "intro") {
-		foreach ($myCards as $card) {
-			$lessonHTML .= "<div id='lessonFrame'><h2>".$card["name"]."</h2>
-					<div id='imgFrame'><img src='./img/".$card["image"]."' /></div>
-					<div id='answerFrame'>";
-			foreach ($card["meanings"] as $meaning) {
-				$lessonHTML .= "<span class='answer' >".$meaning."</span>"; 
-			}
-			$lessonHTML .= "</div></div>";
-		}
+		$lessonHTML .= getLessonHTML( $myQuestions, 1);
 	}
 	
-	if ($myLesson == "choose_meanings") {
-		
-		shuffle($myCards);
-		foreach ($myCards as $card) {
-			$myQuestion = array();
-			$wrongMeanings = array();
-			foreach ($myCards as $card2) {
-				if ($card2 != $card) {
-					foreach ($card2["meanings"] as $meaning) {
-						$wrongMeanings[] = $meaning;
-					}
-				}
-			}
-			$myQuestion["card"] = $card;
-			shuffle($wrongMeanings);
-			shuffle($wrongMeanings); //making the wrong meanings list extra random so i can just slice off the first five with JS later
-			$myQuestion["wrongMeanings"]= $wrongMeanings;
-			$myQuestions[] = $myQuestion;
-		}
-		
-		$lessonHTML .= "<div id='lessonFrame'><h2 number=1 id='cardName'>".$myQuestions[0]["card"]["name"]."</h2>
-				<div id='imgFrame'><img src='./img/".$myQuestions[0]["card"]["image"]."' /></div>
-				<div id='answerFrame'>";		
-		foreach ($myQuestions[0]["card"]["meanings"] as $meaning) {
-			$lessonHTML .= "<span class='answer good' >".$meaning."</span>"; 
-		}
-		$fiveWrongIndices = array_rand($myQuestions[0]["wrongMeanings"],5);
-		foreach ($fiveWrongIndices as $index) {
-			$lessonHTML .= "<span class='answer bad' >".$myQuestions[0]["wrongMeanings"][$index]."</span>"; 
-		}
-		$lessonHTML .= "</div><button id='nextButton' onclick='putQuestion(myGlob[1])'>Next Question</button></div>";
-		$myScript = <<<'EOT'
-		function putQuestion( question ) {
-			$("#cardName").text(question["card"]["name"]);
-			nextQuestion = parseInt($("#cardName").attr("number"))+1;
-			$("#cardName").attr("number", nextQuestion);
-			$("#imgFrame img").attr("src","./img/"+question["card"]["image"]);
-			$("#answerFrame span").remove();
-			$.each(question["card"]["meanings"], function( index, value ) {$("#answerFrame").append("<span class='answer good'>"+value+"</span>");});
-			$.each(question["wrongMeanings"].slice(0,5), function( index, value ) {$("#answerFrame").append("<span class='answer bad'>"+value+"</span>");});
-			$("#nextButton").attr('onclick', 'putQuestion(myGlob['+nextQuestion+'])');
-		}
-		
-
-EOT;
-			
-		$lessonHTML .= "<script>var myGlob =".json_encode($myQuestions).";".$myScript."</script>";
+	if ($myLesson == "choose_meanings") {	
+		$lessonHTML .= getLessonHTML( $myQuestions, 2);
 	}
 	
 	if ($myLesson == "choose_cards") {
@@ -98,7 +38,43 @@ EOT;
 	//load the cards with php and run the lessons with javascript and ajax?
 }
 
-function testData () { 
+function getLessonHTML ( $myQuestions, $type ) {
+	$myHTML = "<div id='lessonFrame'>
+				<div><h2 number=1 id='cardName'></h2></div>
+				<div id='imgFrame'><img src='./img/' /></div>
+				<div id='answerFrame'></div>
+				<div id='nextButtonFrame'><button id='nextButton' onclick='putQuestion$type(myGlob[1])'>Next Question</button></div>
+			   </div>
+				<script>var myGlob =".json_encode($myQuestions)."; putQuestion$type(myGlob[0]);</script>";
+	return $myHTML;
+}
+
+function getQuestions ( $myCards ) {
+	
+	$myQuestions = array();
+	shuffle($myCards);
+	
+	foreach ($myCards as $card) {
+		$myQuestion = array();
+		$wrongMeanings = array();
+		foreach ($myCards as $card2) {
+		if ($card2 != $card) {
+				foreach ($card2["meanings"] as $meaning) {
+					$wrongMeanings[] = $meaning;
+				}
+			}
+		}
+		$myQuestion["card"] = $card;
+		shuffle($wrongMeanings);
+		shuffle($wrongMeanings); //making it extra random so i can just slice off the first five with JS later
+		$myQuestion["wrongMeanings"]= $wrongMeanings;
+		$myQuestions[] = $myQuestion;
+	}
+	return $myQuestions;
+		
+}
+
+function getCards () { 
 
 	$cardArray = ["The World,fulfillment,harmony,completion,Reversed: incompletion,no closure,image: ar21.jpg",
 	"Judgement,reflection,reckoning,awakening,Reversed: lack of self awareness,doubt,self loathing,image: ar20.jpg",
