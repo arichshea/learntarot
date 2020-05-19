@@ -1,10 +1,10 @@
 # learntarot
 
-##Question types:
+## Question types:
 1) show card, pick correct meanings
 2) show meaning, pick correct card 
 
-##topics:
+## topics:
 Level 1: Normal
 major arcana
 	intro lesson 
@@ -33,12 +33,12 @@ Getting master perfect unlocks next level
 Level 2: Reversals
  
 
-##database:
+## database:
 Images:  Rider-Waite-Smith deck
 Words: taken from https://labyrinthos.co/blogs/tarot-card-meanings-list
 
 
-##flow is becoming clearer:
+## flow is becoming clearer:
 User arrives at intro page, clicks start learning
 user gets: initial level, intro lesson 
 Level and progress recorded in User cookie, saved to User database, user supplied with user code
@@ -50,7 +50,7 @@ lets just do a structure for now
 so user.php needs a cookie
 
 
-##database design;
+## database design;
 table: cards
 each row: img location, associated words, suit, number, name, reversed words
 table Meanings:
