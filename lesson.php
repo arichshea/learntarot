@@ -44,6 +44,7 @@ function getLessonHTML ( $myQuestions, $type ) {
 				<div id='imgFrame'><img src='./img/' /></div>
 				<div id='answerFrame'></div>
 				<div id='nextButtonFrame'><button id='nextButton' onclick='putQuestion$type(myGlob[1])'>Next Question</button></div>
+				<div id='scoreFrame'>Score| Correct:<span id='scoreCorrect'>0</span> Wrong:<span id='scoreWrong'>0</span> Total:<span id='scoreTotal'>0</span></div>
 			   </div>
 				<script>var myGlob =".json_encode($myQuestions)."; putQuestion$type(myGlob[0]);</script>";
 	return $myHTML;
