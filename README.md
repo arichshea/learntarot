@@ -59,3 +59,33 @@ each row:
 table: users
 each row: userHash, passHash, email, img_location, session 
 
+## repeat values:
+
+clarity 
+truth 
+contemplation 
+fulfillment 
+security 
+change 
+prosperity 
+hard work 
+responsibility 
+luxury 
+perseverance 
+diligence 
+willpower 
+desire 
+creation 
+grief 
+community 
+unconscious 
+intuition 
+leaving behind 
+compassion 
+joy 
+success 
+celebration 
+control 
+action 
+
+​
