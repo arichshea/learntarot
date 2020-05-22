@@ -21,7 +21,7 @@
 "The Magician,willpower,desire,creation,manifestation,Reversed: trickery,illusions,out of touch,image: ar01.jpg",
 "The Fool,innocence,new beginnings,free spirit,Reversed: recklessness,taken advantage of,inconsideration,image: ar00.jpg",
 "Seven of Wands,perseverance,defensive,maintaining control,Reversed: give up,destroyed confidence,overwhelmed,image: wa07.jpg",
-"Four of Wands,community,home,celebration,Reversed: lack of support,transience,home conflicts,image: wa04.jpg",
+"Four of Wands,domesticity,home,celebration,Reversed: lack of support,transience,home conflicts,image: wa04.jpg",
 "Ace of Wands,creation,willpower,inspiration,desire,Reversed: lack of energy,lack of passion,boredom,image: waac.jpg",
 "Ten of Wands,accomplishment,responsibility,burden,Reversed: inability to delegate,overstressed,burnt out,image: wa10.jpg",
 "Nine of Wands,resilience,grit,last stand,Reversed: exhaustion,fatigue,questioning motivations,image: wa09.jpg",

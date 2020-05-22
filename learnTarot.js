@@ -1,3 +1,24 @@
+
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 function putQuestion2( question ) {
 	updateScore();
 	$("#cardName").text(question["card"]["name"]);
@@ -5,9 +26,21 @@ function putQuestion2( question ) {
 	$("#cardName").attr("number", nextQuestion);
 	$("#imgFrame img").attr("src","./img/"+question["card"]["image"]);
 	$("#answerFrame span").remove();
-	$.each(question["card"]["meanings"], function( index, value ) {$("#answerFrame").append("<span class='answer good' onclick='$(this).addClass(\"clicked\");'>"+value+"</span>");});
-	$.each(question["wrongMeanings"].slice(0,5), function( index, value ) {$("#answerFrame").append("<span class='answer bad' onclick='$(this).addClass(\"clicked\")';>"+value+"</span>");});
-	$("#nextButton").attr('onclick', 'putQuestion2(myGlob['+nextQuestion+'])');
+	newAnswers = [];
+	$.each(question["card"]["meanings"], function( index, value ) {newAnswers.push("<span class='answer good' onclick='$(this).addClass(\"clicked\");'>"+value+"</span>");});
+	$.each(question["wrongMeanings"].slice(0,5), function( index, value ) {newAnswers.push("<span class='answer bad' onclick='$(this).addClass(\"clicked\")';>"+value+"</span>");});
+	shuffle(newAnswers);
+	$.each(newAnswers, function( index, value ) {
+		$("#answerFrame").append(value);
+	});
+	
+	nextScript = "";
+	if (typeof myGlob[nextQuestion] !== 'undefined') {
+		nextScript = 'putQuestion2(myGlob['+nextQuestion+'])';
+	} else {
+		nextScript = 'evaluateLesson()';
+	}
+	$("#nextButton").attr('onclick', nextScript);
 }
 
 function putQuestion1( question ) {
@@ -17,8 +50,19 @@ function putQuestion1( question ) {
 	$("#cardName").attr("number", nextQuestion);
 	$("#imgFrame img").attr("src","./img/"+question["card"]["image"]);
 	$("#answerFrame span").remove();
-	$.each(question["card"]["meanings"], function( index, value ) {$("#answerFrame").append("<span class='answer good' onclick='$(this).addClass(\"clicked\");'>"+value+"</span>");});
-	$("#nextButton").attr('onclick', 'putQuestion1(myGlob['+nextQuestion+'])');
+	newAnswers = [];
+	$.each(question["card"]["meanings"], function( index, value ) {
+		newAnswers.push("<span class='answer good' onclick='$(this).addClass(\"clicked\");'>"+value+"</span>");	
+	});
+	shuffle(newAnswers);
+	$("#answerFrame").append(newAnswers);
+	nextScript = "";
+	if (typeof myGlob[nextQuestion] !== 'undefined') {
+		nextScript = 'putQuestion1(myGlob['+nextQuestion+'])';
+	} else {
+		nextScript = 'evaluateLesson()';
+	}
+	$("#nextButton").attr('onclick', nextScript);
 }
 
 function updateScore( score ) {
@@ -32,4 +76,27 @@ function updateScore( score ) {
 	$("#scoreCorrect").text(parseInt($("#scoreCorrect").text())+numCorrect); 
 	$("#scoreWrong").text(parseInt($("#scoreWrong").text())+numWrong); 
 	$("#scoreTotal").text(parseInt($("#scoreTotal").text())+Total);
+}
+
+function evaluateLesson() {
+
+ alert('lesson over! Check your score');	
+}
+
+function findDuplicates() {
+	myMeanings = [];
+	$.each(myGlob, function( index, question ) {
+		$.each(question["card"]["meanings"], function( index, value ) {
+			myMeanings.push(value);
+		});
+	});
+	myDuplicates = [];
+	$.each(myMeanings, function( index, value ) {
+		$.each(myMeanings, function(index2, value2) {
+			if (value == value2 && index !== index2 && !myDuplicates.includes(value)) {
+				myDuplicates.push(value);
+			}
+		});
+	});
+	$.each(myDuplicates, function (index, value) {console.log(value);});
 }
