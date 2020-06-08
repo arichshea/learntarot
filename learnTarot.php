@@ -10,7 +10,18 @@ include "displayPage.php";
 $myPage = ""; 
 $myPage .= Load_Header();
 $myPage .= Load_UserArea();
-$myPage .= Load_Lesson();
+
+$myCards = new CardSet();
+
+$myLessonType = "intro";
+$myLesson = new IntroLesson($myCards);
+if (isset($_GET["lesson"])) {
+	$myLessonType = $_GET["lesson"];
+}
+if ($myLessonType == "choose_meanings") {
+	$myLesson = new PracticeLesson($myCards);
+}
+$myPage .= $myLesson->getLessonHTML();
 $myPage .= Load_Footer();
 Display_Page($myPage);
 

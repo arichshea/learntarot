@@ -19,6 +19,33 @@ function shuffle(array) {
   return array;
 }
 
+function putQuestion ( question ) {
+	updateScore();
+	$("#cardName").text(question["card"]["name"]);
+	nextQuestion = parseInt($("#cardName").attr("number"))+1;
+	$("#cardName").attr("number", nextQuestion);
+	$("#imgFrame img").attr("src","./img/"+question["card"]["imgLocation"]);
+	$("#answerFrame span").remove();
+	newAnswers = [];
+	$.each(question["card"]["upMeanings"], function( index, value ) {newAnswers.push("<span class='answer good' onclick='$(this).addClass(\"clicked\");'>"+value+"</span>");});
+	if ( typeof question["wrongMeanings"] !== 'undefined' ) {
+		$.each(question["wrongMeanings"].slice(0,5), function( index, value ) {newAnswers.push("<span class='answer bad' onclick='$(this).addClass(\"clicked\")';>"+value+"</span>");});
+	}
+	shuffle(newAnswers);
+	$.each(newAnswers, function( index, value ) {
+		$("#answerFrame").append(value);
+	});
+	
+	nextScript = "";
+	if (typeof myGlob[nextQuestion] !== 'undefined') {
+		nextScript = 'putQuestion(myGlob['+nextQuestion+'])';
+	} else {
+		nextScript = 'evaluateLesson()';
+	}
+	$("#nextButton").attr('onclick', nextScript);
+}
+
+/*
 function putQuestion2( question ) {
 	updateScore();
 	$("#cardName").text(question["card"]["name"]);
@@ -64,6 +91,7 @@ function putQuestion1( question ) {
 	}
 	$("#nextButton").attr('onclick', nextScript);
 }
+*/
 
 function updateScore( score ) {
 	var goodTotal = $(".answer.good").length;
