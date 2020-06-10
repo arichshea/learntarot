@@ -4,7 +4,7 @@
 #lessonFrame {
 	width:550px;
 }
-#imgFrame {
+.imgFrame {
 	float:left;
 }
 
@@ -15,6 +15,12 @@
 span {
 	
 }
+
+.question {
+	clear:right;
+	float:left;
+}
+
 
 .answer {
 	border: black 1px solid;
