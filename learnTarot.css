@@ -2,22 +2,26 @@
 	max-height: 200px;
 }
 #lessonFrame {
-	width:550px;
+	max-width:850px;
 }
 .imgFrame {
 	float:left;
 }
 
-#navigationFrame, #nextButtonFrame, #scoreFrame {
+#navigationFrame, #nextButtonFrame, #scoreFrame, #lessonFrame, #userFrame {
 	float: left;
-	clear: left;
+	clear: both;
 }
 
 .question, .submit {
-	clear:right;
+	clear:left;
 	float:left;
 }
 
+.answerFrame {
+	float:left;
+	width:50%
+}
 
 .answer {
   border: black 1px solid;

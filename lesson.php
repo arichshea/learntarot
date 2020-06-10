@@ -75,7 +75,17 @@ class PracticeLesson extends Lesson {
 
 class MasterLesson extends Lesson {
 	
-	public function getQuestions( $myCards ) {
+	public function getQuestions ( $myCards ) {
+		
+		$myQuestions = array();
+		shuffle($myCards);
+		
+		foreach ($myCards as $card) {
+			$myQuestion = new MasterQuestion( $card );
+			$myQuestions[] = $myQuestion;
+		}
+		return $myQuestions;
+			
 	}
 
 }

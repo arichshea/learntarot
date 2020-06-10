@@ -67,7 +67,24 @@ class PracticeQuestion extends Question {
 
 
 class MasterQuestion extends Question {
+	public TarotCard $card;
 	
+	public function __construct( $card ) {
+		$this->card = $card;
+	}
+	
+	public function getQuestionHTML() {
+		$cardName = $this->card->name;
+		$cardImg = $this->card->imgLocation;
+		$cardUpMeanings = $this->card->upMeanings;
+		$answerHTML = "<label for='text$cardName'><span class='answer good' onclick='' >meanings:<br/><textarea rows='5' cols='20' name='$cardName' id='text$cardName' /></textarea></span></label>";
+
+		return "<div class='question'>
+					<div class='questionText'><h2 id='questionText'>$cardName</h2></div>
+					<div class='imgFrame'><img src='./img/$cardImg' /></div>
+					<div class='answerFrame'>$answerHTML</div>
+				</div>";
+	}	
 	
 	
 	
