@@ -20,12 +20,12 @@ class IntroQuestion extends Question {
 		$cardUpMeanings = $this->card->upMeanings;
 		$answerHTML = "";
 		foreach ($cardUpMeanings as $meaning) {
-			$answerHTML .= "<span class='answer good' onclick='$(this).addClass(\"clicked\");'>$meaning</span>";
+			$answerHTML .= "<label for='$cardName-$meaning'><span class='answer good' onclick='$(this).addClass(\"clicked\");' ><input type='checkbox' name='$cardName' id='$cardName-$meaning' value='$meaning' />$meaning</span></label>";
 		}
 		return "<div class='question'>
 					<div class='questionText'><h2 id='questionText'>$cardName</h2></div>
-					<div id='imgFrame'><img src='./img/$cardImg' /></div>
-					<div id='answerFrame'>$answerHTML</div>
+					<div class='imgFrame'><img src='./img/$cardImg' /></div>
+					<div class='answerFrame'>$answerHTML</div>
 				</div>";
 	}
 }
@@ -47,11 +47,8 @@ class PracticeQuestion extends Question {
 		$cardUpMeanings = $this->card->upMeanings;
 		$answerHTMLarray = [];
 		$answerHTML = "";
-		foreach ($cardUpMeanings as $meaning) {
-			$answerHTMLarray[] = "<span class='answer good' onclick='$(this).addClass(\"clicked\");'>$meaning</span>";
-		}
-		foreach ($this->wrongMeanings as $meaning) {
-			$answerHTMLarray[] = "<span class='answer bad' onclick='$(this).addClass(\"clicked\");'>$meaning</span>";
+		foreach (array_merge($cardUpMeanings,$this->wrongMeanings) as $meaning) {
+			$answerHTMLarray[] = "<label for='$cardName-$meaning'><span class='answer good' onclick='$(this).addClass(\"clicked\");' ><input type='checkbox' name='$cardName' id='$cardName-$meaning' value='$meaning' />$meaning</span></label>";
 		}
 		shuffle($answerHTMLarray);
 		foreach ($answerHTMLarray as $answer) {

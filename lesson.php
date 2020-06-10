@@ -17,8 +17,10 @@ abstract class Lesson {
 			$questionsHTML .= $question->getQuestionHTML();
 		}
 		return "<div id='lessonFrame'>
+					<form name='lesson' id='lesson'>
 					$questionsHTML
-					<div id='scoreFrame'>Score| Correct:<span id='scoreCorrect'>0</span> Wrong:<span id='scoreWrong'>0</span> Total:<span id='scoreTotal'>0</span></div>
+					<div class='submit'> <input type='submit' value='Submit Answers' /></div>
+					</form>
 				   </div>";
 	}
 	public function getQuestions( $myCards ) {

@@ -12,18 +12,15 @@
 	float: left;
 	clear: left;
 }
-span {
-	
-}
 
-.question {
+.question, .submit {
 	clear:right;
 	float:left;
 }
 
 
 .answer {
-	border: black 1px solid;
+  border: black 1px solid;
   margin:10px;
   padding:10px;
   float:left;
