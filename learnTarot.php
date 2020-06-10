@@ -21,6 +21,9 @@ if (isset($_GET["lesson"])) {
 if ($myLessonType == "choose_meanings") {
 	$myLesson = new PracticeLesson($myCards);
 }
+if ($myLessonType == "master") {
+	$myLesson = new MasterLesson($myCards);
+}
 $myPage .= $myLesson->getLessonHTML();
 $myPage .= Load_Footer();
 Display_Page($myPage);

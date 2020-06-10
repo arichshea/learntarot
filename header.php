@@ -10,6 +10,11 @@ function Load_Header() {
 			<link rel="stylesheet" type="text/css" href="learnTarot.css">
 		</head>
 		<body>
+		<div id='navigationFrame'><ul>
+			<li><a href='?lesson=intro'>Intro Lesson</a></li>
+			<li><a href='?lesson=choose_meanings'>Advanced Lesson</a></li>
+			<li><a href='?lesson=master'>Master Lesson</a></li></ul>
+		</div>
 EOT;
 
 }

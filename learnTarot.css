@@ -2,22 +2,29 @@
 	max-height: 200px;
 }
 #lessonFrame {
-	width:550px;
+	max-width:850px;
 }
-#imgFrame {
+.imgFrame {
 	float:left;
 }
 
-#navigationFrame, #nextButtonFrame, #scoreFrame {
+#navigationFrame, #nextButtonFrame, #scoreFrame, #lessonFrame, #userFrame {
 	float: left;
-	clear: left;
+	clear: both;
 }
-span {
-	
+
+.question, .submit {
+	clear:left;
+	float:left;
+}
+
+.answerFrame {
+	float:left;
+	width:50%
 }
 
 .answer {
-	border: black 1px solid;
+  border: black 1px solid;
   margin:10px;
   padding:10px;
   float:left;
