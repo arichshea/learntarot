@@ -10,5 +10,10 @@
 
 
 //class Question
+// need to make changes to questions
+/*
+A question will have a state, including: answers marked/unmarked, whether it's been evaluated
+*/
+
 
 ?>
