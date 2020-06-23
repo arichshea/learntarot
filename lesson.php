@@ -17,7 +17,7 @@ abstract class Lesson {
 			$questionsHTML .= $question->getQuestionHTML();
 		}
 		return "<div id='lessonFrame'>
-					<form name='lesson' id='lesson'>
+					<form name='lesson' id='lesson' method='post'>
 					$questionsHTML
 					<div class='submit'> <input type='submit' value='Submit Answers' /></div>
 					</form>
