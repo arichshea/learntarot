@@ -16,8 +16,8 @@ $myCards = new CardSet();
 
 $myLessonType = "intro";
 $myLesson = new IntroLesson($myCards);
-if (isset($_POST[0])) {
-	$myPage .= Answer_Evaluator($_POST);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$myPage .= "<div><h1>Answer</h1>".Answer_Evaluator($_POST)."</div>";
 }
 if (isset($_GET["lesson"])) {
 	$myLessonType = $_GET["lesson"];
