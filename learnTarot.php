@@ -17,7 +17,7 @@ $myCards = new CardSet();
 $myLessonType = "intro";
 $myLesson = new IntroLesson($myCards);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$myPage .= "<div><h1>Answer</h1>".Answer_Evaluator($_POST)."</div>";
+	$myPage .= "<div id='answerPostFrame'><h1>Answer</h1>".Answer_Evaluator($_POST)."</div>";
 }
 if (isset($_GET["lesson"])) {
 	$myLessonType = $_GET["lesson"];

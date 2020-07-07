@@ -19,8 +19,8 @@ class IntroQuestion extends Question {
 		$cardImg = $this->card->imgLocation;
 		$cardUpMeanings = $this->card->upMeanings;
 		$answerHTML = "";
-		foreach ($cardUpMeanings as $meaning) {
-			$answerHTML .= "<label for='$cardName-$meaning'><span class='answer good' onclick='$(this).addClass(\"clicked\");' ><input type='checkbox' name='$cardName' id='$cardName-$meaning' value='$meaning' />$meaning</span></label>";
+		foreach ($cardUpMeanings as $key=>$meaning) {
+			$answerHTML .= "<span class='answer good' onclick='$(this).addClass(\"clicked\");' ><label for='$cardName-$meaning-true'>$meaning<input type='radio' name='$cardName-$meaning' id='$cardName-$meaning-true' value='$cardName-$meaning-true'>true</input></label><label for='$cardName-$meaning-false'><input type='radio' name='$cardName-$meaning' id='$cardName-$meaning-false' value='$cardName-$meaning-false'  checked='checked'>false</input></span></label>";
 		}
 		return "<div class='question'>
 					<div class='questionText'><h2 id='questionText'>$cardName</h2></div>
