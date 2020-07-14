@@ -39,18 +39,11 @@ class Answer {
 	public function checkAnswer() {
 		$allCardset = new Cardset();
 		$meanings = $allCardset->allCards[$this->name]->upMeanings;
-		if ($this->truthValue) {
-			if( array_search($this->meaning, $meanings) !== FALSE ) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
+		$searchResult = array_search($this->meaning, $meanings);
+		if ($searchResult !== FALSE) {
+			return $this->truthValue == "true";
 		} else {
-			if( array_search($this->meaning, $meanings) == FALSE ) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
+			return $this->truthValue == "false";
 		}
 	}
 	
