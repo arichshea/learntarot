@@ -125,7 +125,7 @@ class CardSet {
 				$image = explode(",image: ",$reversedImage)[1];
 				$name = array_shift($uprightArray);
 				$reversedArray = explode(",",$reversed);
-				array_push($newArray, new TarotCard($name, $uprightArray, $reversedArray, $image));
+				$newArray[$name] = new TarotCard($name, $uprightArray, $reversedArray, $image);
 			}
 
 		$this->allCards = $newArray;
