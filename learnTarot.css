@@ -8,7 +8,7 @@
 	float:left;
 }
 
-#navigationFrame, #nextButtonFrame, #scoreFrame, #lessonFrame, #userFrame {
+#navigationFrame, #nextButtonFrame, #scoreFrame, #lessonFrame, #userFrame, #answerPostFrame {
 	float: left;
 	clear: both;
 }
@@ -28,6 +28,7 @@
   margin:10px;
   padding:10px;
   float:left;
+  clear:left;
 }
 		
 .answer.good.clicked {
