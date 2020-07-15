@@ -93,7 +93,7 @@ class MasterQuestion extends Question {
 		$cardName = $this->card->name;
 		$cardImg = $this->card->imgLocation;
 		$cardUpMeanings = $this->card->upMeanings;
-		$answerHTML = "<label for='text$cardName'><span class='answer good' onclick='' >meanings:<br/><textarea rows='5' cols='20' name='$cardName' id='text$cardName' /></textarea></span></label>";
+		$answerHTML = "<label for='text$cardName'><span class='answer good' onclick='' >meanings:<br/><input type='text' name='$cardName' id='text$cardName' /></span></label>";
 
 		return "<div class='question'>
 					<div class='questionText'><h2 id='questionText'>$cardName</h2></div>

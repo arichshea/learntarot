@@ -6,6 +6,7 @@ abstract class Lesson {
 	
 	public $cardSet;
 	public $questionSet;
+	public $lessonType;
 	public function __construct($cardSet) {
 	 $this->cardSet = $cardSet;
 	 $this->questionSet = $this->getQuestions( $this->cardSet->setCards );
@@ -19,7 +20,9 @@ abstract class Lesson {
 		return "<div id='lessonFrame'>
 					<form name='lesson' id='lesson' method='post'>
 					$questionsHTML
-					<div class='submit'> <input type='submit' value='Submit Answers' /></div>
+					<div class='submit'> 
+					<input style='display:none;' type='checkbox' checked='checked' name='lessonType' value='$this->lessonType' />
+					<input type='submit' value='Submit Answers' /></div>
 					</form>
 				   </div>";
 	}
@@ -31,6 +34,7 @@ class IntroLesson extends Lesson {
 	
 	public function getQuestions ( $myCards ) {
 		
+		$this->lessonType = "Intro";
 		$myQuestions = array();
 		shuffle($myCards);
 		
@@ -48,6 +52,7 @@ class PracticeLesson extends Lesson {
 
 	public function getQuestions ( $myCards ) {
 		
+		$this->lessonType = "Practice";
 		$myQuestions = array();
 		shuffle($myCards);
 		
@@ -76,6 +81,8 @@ class PracticeLesson extends Lesson {
 class MasterLesson extends Lesson {
 	
 	public function getQuestions ( $myCards ) {
+		
+		$this->lessonType = "Master";
 		
 		$myQuestions = array();
 		shuffle($myCards);

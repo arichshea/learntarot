@@ -5,16 +5,32 @@ function Answer_Evaluator ( $post_array ) {
 	$myHTML = "<div><pre>";
 	$points = 0;
 	$possiblePoints = 0;
+	//var_dump($post_array);
 	foreach ( $post_array as $answer ) {
-		$answerArray = explode("-", $answer);
-		$card = $answerArray[0];
-		$meaning = $answerArray[1];
-		$truthValue = $answerArray[2];
-		$answer = new Answer($card, $meaning, $truthValue);
-		if ($currentAnswer = $answer->checkAnswer()) { $points++; }
-		$possiblePoints++;
-		
-		$myHTML .= "<span>$card, $meaning, $truthValue, evaluation: $currentAnswer</span><br />";
+		if ($post_array["lessonType"] != $answer) {
+			if ($post_array["lessonType"] == "Intro" || $post_array["lessonType"] == "Practice") {
+				$answerArray = explode("-", $answer);
+				$card = $answerArray[0];
+				$meaning = $answerArray[1];
+				$truthValue = $answerArray[2];
+				$answer = new Answer($card, $meaning, $truthValue);
+				if ($currentAnswer = $answer->checkAnswer()) { $points++; }
+				$possiblePoints++;
+				
+				$myHTML .= "<span>$card, $meaning, $truthValue, evaluation: $currentAnswer</span><br />";
+			}
+			if ($post_array["lessonType"] == "Master") {
+				$card = str_replace("_"," ",array_keys($post_array, $answer)[0]);
+				$truthValue = "true";
+				foreach( explode(",", $answer) as $meaning) {
+					$answer = new Answer($card, $meaning, $truthValue);
+					if ($currentAnswer = $answer->checkAnswer()) { $points++; }
+					$possiblePoints++;
+					
+					$myHTML .= "<span>$card, $meaning, $truthValue, evaluation: $currentAnswer</span><br />";
+				}
+			}
+		}
 	}
 	
 	$myHTML .= "<span>Total score: $points / $possiblePoints</span><br />";
@@ -48,7 +64,6 @@ class Answer {
 	}
 	
 }
-
 
 
 
