@@ -53,7 +53,7 @@ class Answer {
 	}
 	
 	public function checkAnswer() {
-		$allCardset = new Cardset();
+		$allCardset = new Cardset([]);
 		$meanings = $allCardset->allCards[$this->name]->upMeanings;
 		$searchResult = array_search($this->meaning, $meanings);
 		if ($searchResult !== FALSE) {

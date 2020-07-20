@@ -12,7 +12,7 @@ $myPage = "";
 $myPage .= Load_Header();
 $myPage .= Load_UserArea();
 
-$myCards = new CardSet();
+$myCards = new CardSet(["The Sun"]);
 
 $myLessonType = "intro";
 $myLesson = new IntroLesson($myCards);

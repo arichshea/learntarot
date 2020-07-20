@@ -109,9 +109,15 @@ class CardSet {
 	public $allCards; 
 	public $setCards;
 		
-	public function __construct( ) {
+	public function __construct( $nameArray ) {
 		$this->setAllCards();
-		$this->setCards = $this->allCards;
+		if ( count($nameArray) == 0) {
+			$this->setCards = $this->allCards;
+		} else {
+			foreach ($nameArray as $name) {
+				$this->setCards[$name] = $this->allCards[$name];
+			}
+		}
 	}
 
 	public function setAllCards () {
