@@ -24,4 +24,10 @@ function Load_UserArea() {
 	
 }
 
+class User {
+	public $name;
+	public $level;
+	
+}
+
 ?>

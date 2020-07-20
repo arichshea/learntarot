@@ -14,6 +14,9 @@ class Course {
 	public Cardset $swordCourtSet=["King of Swords","Knight of Swords","Queen of Swords","Page of Swords"];
 	public Cardset $swordNumSet=["Ten of Swords","Nine of Swords","Eight of Swords","Seven of Swords","Six of Swords","Five of Swords","Three of Swords","Four of Swords","Two of Swords","Ace of Swords"];
 	
+	public User $user;
+	
+	public 
 
 }
 
